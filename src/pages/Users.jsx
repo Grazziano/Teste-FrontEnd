@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../services';
-import Loading from './Loading';
+import api from '../services';
 
-export default function Tasks() {
-  const [users, setUsers] = useState();
-  const [loading, setLoading] = useState(false);
+export default function Users() {
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     api
@@ -15,14 +13,14 @@ export default function Tasks() {
       });
   }, []);
 
-  if (loading) return <Loading />;
-
   return (
     <div>
-      <h1>Tarefas</h1>
+      <h1>Usuários</h1>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>
+            <a href={user.id}>{user.name}</a>
+          </li>
         ))}
       </ul>
     </div>
