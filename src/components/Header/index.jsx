@@ -7,11 +7,11 @@ export default function Header({ title }) {
       <div>
         <h1>{title}</h1>
         <nav>
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
-          </ul>
+          </ul> */}
         </nav>
       </div>
     </header>
