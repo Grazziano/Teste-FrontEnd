@@ -22,7 +22,29 @@
 - Marcar tarefas como concluída ou pendente
 
 ## Projeto
-[Link do projeto rodando](https://teste-front-end-rho.vercel.app/)
+Para ver o projeto rodando acesso: [click aqui](https://teste-front-end-rho.vercel.app/)
+
+## Projeto Local
+Para ter o projeto rodando localmente siga os passos abaixo:
+
+Clone o repositório com o comando abaixo
+
+- SSH
+```
+git clone git@github.com:Grazziano/Teste-FrontEnd.git
+```
+
+ou
+
+- HTTPS
+```
+git clone https://github.com/Grazziano/Teste-FrontEnd.git
+```
+
+Acesse a pasta do projeto e rode o comando abaixo
+```
+npm install
+```
 
 ## Veja o desenvolvimento do projeto:
 
