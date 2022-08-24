@@ -7,8 +7,8 @@ import Header from './components/Header';
 function App() {
   return (
     <div>
-      <Header title="Lista de Tarefas" />
       <Router>
+        <Header title="Lista de Tarefas" />
         <Routes>
           <Route path="/" element={<Home />} exact />
           <Route path="/tasks/:id" element={<Tasks />} />
