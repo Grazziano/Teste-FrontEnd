@@ -2,7 +2,7 @@
 
 # Teste - Lista de Tarefas
 
-Descrição curta do projeto. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
+- Teste de frontend com o objetico de identificar pré requisitos necessários para a vaga. Aplicação ToDo List que lista as tarefas por usuário consumindo uma api.
 
 ## 🔧 Funções
 
