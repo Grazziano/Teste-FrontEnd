@@ -4,11 +4,6 @@ import api from '../../services';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
-  // const navigate = useNavigate();
-
-  // const handleClick = (id) => {
-  //   navigate(`/tasks/${id}`);
-  // };
 
   useEffect(() => {
     api
@@ -23,10 +18,9 @@ export default function Home() {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <Link to={`/tasks/${user.id}`}>{user.id} - {user.name}</Link>
-            {/* <button type="button" onClick={() => handleClick(user.id)}>
+            <Link to={`/tasks/${user.id}`}>
               {user.id} - {user.name}
-            </button> */}
+            </Link>
           </li>
         ))}
       </ul>
