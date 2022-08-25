@@ -28,8 +28,6 @@ export default function CreateTask() {
     setTitle('');
   };
 
-  console.log(title);
-
   return (
     <div>
       <h1>Formulário</h1>

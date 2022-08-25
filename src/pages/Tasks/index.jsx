@@ -8,8 +8,6 @@ export default function Tasks() {
 
   const [tasks, setTasks] = useState([]);
 
-  console.log(tasks);
-
   const handleTaskStatus = (taskId, title, completed) => {
     api
       .patch(`/todos/${id}`, {
@@ -19,8 +17,11 @@ export default function Tasks() {
         completed: !completed,
       })
       .then((response) => {
-        console.log(response.data);
-        toast.success(response.data);
+        const tasksStatus = Object.values(response.data);
+        const resultMessage = `Tarefa nº ${tasksStatus[1]} ${
+          tasksStatus[3] ? 'completed' : 'incomplete'
+        }`;
+        toast.success(resultMessage);
       });
   };
 
