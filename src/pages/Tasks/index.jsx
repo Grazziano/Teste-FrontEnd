@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import api from '../../services';
+import './Tasks.css';
 
 export default function Tasks() {
   const { id } = useParams();
@@ -33,8 +34,11 @@ export default function Tasks() {
   }, [id]);
 
   return (
-    <div>
+    <div className="tasks">
       <h1>Tarefas</h1>
+
+      <Link to={`/create/${id}`}>ADD TASK</Link>
+
       <ol>
         {tasks.map((task) => {
           return (
@@ -44,6 +48,7 @@ export default function Tasks() {
                 onClick={() =>
                   handleTaskStatus(task.id, task.title, task.completed)
                 }
+                className={task.completed ? 'completed' : 'incomplete'}
               >
                 {task.completed ? (
                   <span>completed</span>
@@ -55,7 +60,6 @@ export default function Tasks() {
           );
         })}
       </ol>
-      <Link to={`/create/${id}`}>ADD TASK</Link>
     </div>
   );
 }

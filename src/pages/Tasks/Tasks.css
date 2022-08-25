@@ -1,0 +1,42 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasks h1 {
+  color: #fff;
+}
+
+.tasks a {
+  background-color: rgb(97, 113, 255);
+  border-radius: 0.5rem;
+  color: #fff;
+  padding: 10px 40px;
+  text-decoration: none;
+}
+
+.tasks ol li {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  /* font-weight: 600;
+  font-size: large; */
+  margin-bottom: 4px;
+}
+
+.tasks button {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.tasks .completed {
+  background-color: rgb(11, 175, 11);
+}
+
+.tasks .incomplete {
+  background-color: rgb(245, 83, 83);
+}
