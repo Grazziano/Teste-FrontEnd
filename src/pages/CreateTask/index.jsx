@@ -10,6 +10,11 @@ export default function CreateTask() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (title === '') {
+      toast.error('Nome da Tarefa é obrigatório!');
+      return;
+    }
+
     api
       .post('/todos', {
         title,
