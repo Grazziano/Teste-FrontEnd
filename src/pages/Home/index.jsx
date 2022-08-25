@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services';
+import './Home.css';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <h1>Usuários</h1>
       <ul>
         {users.map((user) => (
