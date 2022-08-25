@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import api from '../../services';
 
 export default function Tasks() {
@@ -26,6 +26,7 @@ export default function Tasks() {
           );
         })}
       </ol>
+      <Link to={`/create/${id}`}>ADD TASK</Link>
     </div>
   );
 }
