@@ -46,6 +46,19 @@ Acesse a pasta do projeto e rode o comando abaixo
 npm install
 ```
 
+## Projeto no Docker
+Se você tem o docker-compose instalado no seu computador, após clonar o projeto basta rodar o comando abaixo para criar e iniciar os contêineres:
+
+```
+docker-compose up -d
+```
+
+Para paralisar e remover todos os contêineres use o comando:
+
+```
+docker-compose down
+```
+
 ## Veja o desenvolvimento do projeto:
 
 Para ver o desenvolvimento acesse o planejamento:
