@@ -34,7 +34,14 @@ export default function Home() {
     }
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+      <div className="home">
+        <h1>Usuários</h1>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="home">
