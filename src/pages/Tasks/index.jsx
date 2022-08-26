@@ -11,26 +11,61 @@ export default function Tasks() {
 
   const handleTaskStatus = (taskId, title, completed) => {
     api
-      .patch(`/todos/${id}`, {
+      .put(`/todos/${id}`, {
+        userId: id,
         id: taskId,
         title,
-        userId: id,
         completed: !completed,
       })
       .then((response) => {
-        const tasksStatus = Object.values(response.data);
-        const resultMessage = `Tarefa nº ${tasksStatus[1]} ${
-          tasksStatus[3] ? 'completed' : 'incomplete'
+        const newListTask = [];
+
+        tasks.forEach((task) => {
+          if (task.id === taskId) {
+            console.log(response.data.id);
+            newListTask.push({
+              userId: id,
+              id: task.id,
+              title: title,
+              completed: !completed,
+            });
+          } else {
+            newListTask.push(task);
+          }
+        });
+
+        setTasks(newListTask);
+        localStorage.setItem('tasks', JSON.stringify(newListTask));
+
+        const resultMessage = `Tarefa nº ${taskId} ${
+          !completed ? 'completed' : 'incomplete'
         }`;
         toast.success(resultMessage);
       });
   };
 
-  useEffect(() => {
+  const loadLocalStorage = () => {
+    const storedArray = localStorage.getItem('tasks');
+    const list = JSON.parse(storedArray);
+    setTasks(list);
+  };
+
+  const saveLocalStorage = () => {
     api
-      .get(`/users/${id}/todos`)
-      .then((response) => setTasks(response.data))
+      .get('/todos')
+      .then((response) => {
+        localStorage.setItem('tasks', JSON.stringify(response.data));
+        setTasks(response.data);
+      })
       .catch((err) => console.log('Um erro ocorreu! ' + err));
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('tasks')) {
+      loadLocalStorage();
+    } else {
+      saveLocalStorage();
+    }
   }, [id]);
 
   return (
@@ -42,21 +77,23 @@ export default function Tasks() {
       <ol>
         {tasks.map((task) => {
           return (
-            <li key={task.id}>
-              {task.title} -{' '}
-              <button
-                onClick={() =>
-                  handleTaskStatus(task.id, task.title, task.completed)
-                }
-                className={task.completed ? 'completed' : 'incomplete'}
-              >
-                {task.completed ? (
-                  <span>completed</span>
-                ) : (
-                  <span>incomplete</span>
-                )}
-              </button>
-            </li>
+            Number(task.userId) === Number(id) && (
+              <li key={task.id}>
+                {task.id} - {task.title}
+                <button
+                  onClick={() =>
+                    handleTaskStatus(task.id, task.title, task.completed)
+                  }
+                  className={task.completed ? 'completed' : 'incomplete'}
+                >
+                  {task.completed ? (
+                    <span>completed</span>
+                  ) : (
+                    <span>incomplete</span>
+                  )}
+                </button>
+              </li>
+            )
           );
         })}
       </ol>
