@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../services';
 import { toast } from 'react-toastify';
 import './CreateTask.css';
@@ -7,6 +7,7 @@ import './CreateTask.css';
 export default function CreateTask() {
   const { id } = useParams();
   const [title, setTitle] = useState('');
+  const navigate = useNavigate();
 
   const updateLocalStorage = (newTask) => {
     const storedArray = localStorage.getItem('tasks');
@@ -48,7 +49,7 @@ export default function CreateTask() {
 
   return (
     <div className="form">
-      <h1>Formulário</h1>
+      <h2>Formulário</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Nome da tarefa</label>
         <input
@@ -58,6 +59,9 @@ export default function CreateTask() {
           placeholder="Digite uma tarefa"
         />
         <button type="submit">Salvar</button>
+        <button type="button" onClick={() => navigate(-1)}>
+          Voltar
+        </button>
       </form>
     </div>
   );

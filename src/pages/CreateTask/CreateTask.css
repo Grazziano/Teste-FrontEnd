@@ -4,8 +4,12 @@
   align-items: center;
 }
 
-.form h1 {
+.form h2 {
   color: #fff;
+}
+
+.form div button {
+  margin-left: 60%;
 }
 
 .form form {
@@ -32,6 +36,8 @@
   border: none;
   border-radius: 0.5rem;
   color: #fff;
+  cursor: pointer;
+  margin-bottom: 8px;
   padding: 10px;
   font-size: 18px;
 }
