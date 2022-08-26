@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/Loading';
 import api from '../../services';
 import './Home.css';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const loadLocalStorage = () => {
     const storedArray = localStorage.getItem('users');
@@ -12,11 +14,14 @@ export default function Home() {
   };
 
   const saveLocalStorage = () => {
+    setLoading(true);
+
     api
       .get('/users')
       .then((response) => {
         localStorage.setItem('users', JSON.stringify(response.data));
         setUsers(response.data);
+        setLoading(false);
       })
       .catch((err) => console.log('Ops! Ocorreu um erro!' + err));
   };
@@ -28,6 +33,8 @@ export default function Home() {
       saveLocalStorage();
     }
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <div className="home">

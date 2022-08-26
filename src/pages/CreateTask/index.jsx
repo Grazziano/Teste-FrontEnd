@@ -31,7 +31,6 @@ export default function CreateTask() {
         completed: false,
       })
       .then((response) => {
-        console.log(response.data);
         const obj = {
           userId: response.data.userId,
           id: response.data.id,
