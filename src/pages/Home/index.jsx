@@ -6,11 +6,27 @@ import './Home.css';
 export default function Home() {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
+  const loadLocalStorage = () => {
+    const storedArray = localStorage.getItem('users');
+    setUsers(JSON.parse(storedArray));
+  };
+
+  const saveLocalStorage = () => {
     api
       .get('/users')
-      .then((response) => setUsers(response.data))
+      .then((response) => {
+        localStorage.setItem('users', JSON.stringify(response.data));
+        setUsers(response.data);
+      })
       .catch((err) => console.log('Ops! Ocorreu um erro!' + err));
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('users')) {
+      loadLocalStorage();
+    } else {
+      saveLocalStorage();
+    }
   }, []);
 
   return (
