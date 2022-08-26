@@ -22,7 +22,6 @@ export default function Tasks() {
 
         tasks.forEach((task) => {
           if (task.id === taskId) {
-            console.log(response.data.id);
             newListTask.push({
               userId: id,
               id: task.id,
