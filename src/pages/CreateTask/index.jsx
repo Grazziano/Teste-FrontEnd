@@ -8,6 +8,13 @@ export default function CreateTask() {
   const { id } = useParams();
   const [title, setTitle] = useState('');
 
+  const updateLocalStorage = (newTask) => {
+    const storedArray = localStorage.getItem('tasks');
+    const list = JSON.parse(storedArray);
+    const newArray = [...list, newTask];
+    localStorage.setItem('tasks', JSON.stringify(newArray));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -23,6 +30,16 @@ export default function CreateTask() {
         completed: false,
       })
       .then((response) => {
+        console.log(response.data);
+        const obj = {
+          userId: response.data.userId,
+          id: response.data.id,
+          title: response.data.title,
+          completed: response.data.completed,
+        };
+
+        updateLocalStorage(obj);
+
         toast.success(`Tarefa nº${response.data.id} criada com sucesso`);
       });
 
